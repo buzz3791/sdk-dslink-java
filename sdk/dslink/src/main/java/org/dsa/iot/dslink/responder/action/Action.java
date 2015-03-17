@@ -1,14 +1,19 @@
 package org.dsa.iot.dslink.responder.action;
 
-import lombok.*;
+import java.util.ArrayList;
+import java.util.List;
+
+import lombok.Getter;
+import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
+import lombok.Setter;
+import lombok.val;
+
 import org.dsa.iot.dslink.util.Permission;
 import org.dsa.iot.dslink.util.StreamState;
 import org.vertx.java.core.Handler;
 import org.vertx.java.core.json.JsonArray;
 import org.vertx.java.core.json.JsonObject;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * @author Samuel Grenier
@@ -71,6 +76,11 @@ public class Action {
          * Updates returned from the list response
          */
         @Setter private JsonArray updates = null;
+        
+        /**
+         * Updates returned from the list response
+         */
+        @Setter private JsonArray columns = null;
 
         /**
          * Stream state can be set to prevent a closing stream after invocation.
