@@ -1,13 +1,14 @@
 package org.dsa.iot.dslink.connection.connector.client;
 
 import net.engio.mbassy.bus.MBassador;
+
 import org.dsa.iot.core.URLInfo;
 import org.dsa.iot.core.Utils;
+import org.dsa.iot.core.event.Event;
 import org.dsa.iot.dslink.connection.ClientConnector;
 import org.dsa.iot.dslink.connection.handshake.HandshakePair;
 import org.dsa.iot.dslink.events.AsyncExceptionEvent;
 import org.dsa.iot.dslink.events.ConnectedToServerEvent;
-import org.dsa.iot.core.event.Event;
 import org.dsa.iot.dslink.events.IncomingDataEvent;
 import org.dsa.iot.dslink.requester.RequestTracker;
 import org.dsa.iot.dslink.responder.ResponseTracker;
@@ -41,6 +42,7 @@ public class WebSocketConnector extends ClientConnector {
         connecting = true;
         client = Utils.VERTX.createHttpClient();
         client.setHost(getDataEndpoint().host).setPort(getDataEndpoint().port);
+        client.setMaxWebSocketFrameSize(Integer.MAX_VALUE);
         if (getDataEndpoint().secure) {
             client.setSSL(true);
             client.setVerifyHost(sslVerify);
