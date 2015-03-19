@@ -17,4 +17,22 @@ public enum ValueType {
     public String toJsonString() {
         return this.toString().toLowerCase();
     }
+
+    public static ValueType toEnum(String type) {
+        type = type.toLowerCase();
+        switch (type) {
+            case "number":
+                return NUMBER;
+            case "string":
+                return STRING;
+            case "bool":
+                return BOOL;
+            case "map":
+                return MAP;
+            case "array":
+                return ARRAY;
+            default:
+                throw new RuntimeException("Unsupported type: " + type);
+        }
+    }
 }
